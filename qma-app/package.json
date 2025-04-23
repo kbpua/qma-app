@@ -2,7 +2,7 @@
   "name": "qma-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/kbpua/qma-app.git",
+  "homepage": "https://kbpua.github.io/qma-app",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
