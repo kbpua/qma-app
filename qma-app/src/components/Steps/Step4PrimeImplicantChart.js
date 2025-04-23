@@ -1,5 +1,20 @@
 import React from 'react';
 
+/**
+ * Step4PrimeImplicantChart component displays the prime implicant chart which shows the coverage of maxterms
+ * by each prime implicant, and highlights essential prime implicants.
+ * Essential prime implicants are those that uniquely cover at least one maxterm.
+ *
+ * @param {Object} props - Component properties
+ * @param {Object} props.result - The result object containing prime implicant chart data
+ * @param {Array} props.result.complements - An array of complements (maxterms) that the prime implicants cover
+ * @param {Array} props.result.primeImplicants - An array of prime implicants
+ * @param {Object} props.result.piCoverage - An object where each key is a prime implicant and the value is an array of minterms it covers
+ * @param {Array} props.result.essentialPIs - An array of essential prime implicants (those that uniquely cover at least one maxterm)
+ * @param {Array} props.result.additionalPIs - An array of additional prime implicants selected to cover remaining minterms
+ *
+ * @returns {JSX.Element} The rendered Step4PrimeImplicantChart component
+ */
 function Step4PrimeImplicantChart({ result }) {
   return (
     <div className="step-container">

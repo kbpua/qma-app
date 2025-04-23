@@ -11,72 +11,107 @@ import Step4PrimeImplicantChart from './components/Steps/Step4PrimeImplicantChar
 import Step5FinalExpression from './components/Steps/Step5FinalExpression';
 import StepNavigation from './components/Navigation';
 
+/**
+ * Main app for visualizing the Quine-McCluskey Algorithm.
+ */
 function App() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [inputMinterms, setInputMinterms] = useState('');
-  const [inputVariables, setInputVariables] = useState('');
-  const [result, setResult] = useState(null);
-  const [error, setError] = useState('');
-  
+  const [currentStep, setCurrentStep] = useState(0); // Tracks the current step
+  const [inputMinterms, setInputMinterms] = useState(''); // Minterm input string
+  const [inputVariables, setInputVariables] = useState(''); // Variable input string
+  const [result, setResult] = useState(null); // Result from the algorithm
+  const [error, setError] = useState(''); // Error message
+
+  /**
+   * Handles form submission and input validation.
+   * @param {Event} e - Form submit event
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
-    
-    // Process minterms
-    const minterms = inputMinterms.trim()
-      .split(',')
-      .map(Number)
-      .filter(num => !isNaN(num));
-      
+
+    // Validate minterms
+    if (inputMinterms.trim() === '') {
+      setError('Please enter at least one minterm.');
+      return;
+    }
+
+    const rawMinterms = inputMinterms.trim().split(',').map(term => term.trim());
+    const invalidMinterms = rawMinterms.filter(term => term === '' || isNaN(term) || !/^\d+$/.test(term));
+
+    if (invalidMinterms.length > 0) {
+      setError(`Invalid minterm(s): ${invalidMinterms.join(', ')}`);
+      return;
+    }
+
+    const minterms = rawMinterms.map(Number);
     if (minterms.length === 0) {
-      setError('Please enter valid minterms');
+      setError('Please enter at least one minterm.');
       return;
     }
-    
-    // Process variables
-    const variables = inputVariables.trim().split('').filter(char => /[A-Za-z]/.test(char));
-    
+
+    // Check for duplicates
+    const seenMinterms = new Set();
+    const duplicateMinterms = minterms.filter((term) => {
+      if (seenMinterms.has(term)) return true;
+      seenMinterms.add(term);
+      return false;
+    });
+    if (duplicateMinterms.length > 0) {
+      setError(`Duplicate minterm(s): ${[...new Set(duplicateMinterms)].join(', ')}`);
+      return;
+    }
+
     // Validate variables
-    if (variables.length === 0) {
-      setError('Please enter at least one variable');
+    if (inputVariables.trim() === '') {
+      setError('Please enter at least one variable.');
       return;
     }
-    
-    if (variables.length > 10) {
-      setError('Maximum 10 variables allowed');
+
+    const rawVars = inputVariables.trim().split('').filter(char => /[A-Za-z]/.test(char));
+
+    if (rawVars.length === 0) {
+      setError('Please enter at least one variable.');
       return;
     }
-    
-    // Check for duplicate variables
-    const uniqueVars = new Set(variables);
-    if (uniqueVars.size !== variables.length) {
-      setError('Duplicate variables are not allowed');
+
+    if (rawVars.length > 6) {
+      setError('Maximum of 6 variables allowed.');
       return;
     }
-    
-    // Find the largest minterm to ensure it fits with the number of variables
+
+    const uniqueVars = new Set(rawVars);
+    if (uniqueVars.size !== rawVars.length) {
+      setError('Duplicate variables are not allowed.');
+      return;
+    }
+
+    // Check if largest minterm fits in given variable count
     const largestMinterm = Math.max(...minterms);
-    const maxAllowedMinterm = Math.pow(2, variables.length) - 1;
-    
-    if (largestMinterm > maxAllowedMinterm) {
-      setError(`The largest minterm (${largestMinterm}) exceeds the maximum allowed (${maxAllowedMinterm}) for ${variables.length} variables`);
+    const maxAllowed = 63;
+    if (largestMinterm > maxAllowed) {
+      setError(`Minterm ${largestMinterm} exceeds the maximum allowed (63).`);
       return;
     }
-    
-    // Run the QMA algorithm with custom variables
-    const qmaResult = QMService.runQMA(minterms, variables);
+
+    const requiredVars = Math.ceil(Math.log2(largestMinterm + 1));
+    if (rawVars.length < requiredVars) {
+      setError(`Need at least ${requiredVars} variables for minterm ${largestMinterm}.`);
+      return;
+    }
+
+    // Run the algorithm
+    const qmaResult = QMService.runQMA(minterms, rawVars);
     setResult(qmaResult);
     setCurrentStep(1);
   };
-  
-  const nextStep = () => {
-    setCurrentStep(currentStep + 1);
-  };
-  
-  const prevStep = () => {
-    setCurrentStep(currentStep - 1);
-  };
-  
+
+  /** Move to the next step */
+  const nextStep = () => setCurrentStep(currentStep + 1);
+
+  /** Go back to the previous step */
+  const prevStep = () => setCurrentStep(currentStep - 1);
+
+  /** Reset the whole app */
   const resetApp = () => {
     setCurrentStep(0);
     setResult(null);
@@ -84,18 +119,18 @@ function App() {
     setInputVariables('');
     setError('');
   };
-  
+
   return (
     <div className="app">
       <header className="app-header">
         <h1>Quine-McCluskey Algorithm</h1>
         <p>A step-by-step visual representation of the QMA process</p>
       </header>
-      
+
       <main className="app-content">
         {currentStep === 0 ? (
-          <InputForm 
-            inputMinterms={inputMinterms} 
+          <InputForm
+            inputMinterms={inputMinterms}
             setInputMinterms={setInputMinterms}
             inputVariables={inputVariables}
             setInputVariables={setInputVariables}
@@ -104,7 +139,7 @@ function App() {
           />
         ) : (
           <>
-            <StepNavigation 
+            <StepNavigation
               currentStep={currentStep}
               totalSteps={5}
               prevStep={prevStep}

@@ -1,5 +1,19 @@
 import React from 'react';
 
+/**
+ * InputForm component allows users to input minterms and variables.
+ * It handles form submission and updates state with the input values.
+ *
+ * @param {Object} props - Component properties
+ * @param {string} props.inputMinterms - The current value of the input minterms
+ * @param {function} props.setInputMinterms - Function to update the inputMinterms state
+ * @param {string} props.inputVariables - The current value of the input variables
+ * @param {function} props.setInputVariables - Function to update the inputVariables state
+ * @param {function} props.handleSubmit - Function to handle form submission
+ * @param {string} [props.error] - Error message if validation fails
+ * 
+ * @returns {JSX.Element} The rendered InputForm component
+ */
 function InputForm({ inputMinterms, setInputMinterms, inputVariables, setInputVariables, handleSubmit, error }) {
   return (
     <div className="input-form">
@@ -19,7 +33,7 @@ function InputForm({ inputMinterms, setInputMinterms, inputVariables, setInputVa
         </div>
         
         <div className="input-group">
-          <label htmlFor="variables">Variables (maximum 10)</label>
+          <label htmlFor="variables">Variables (maximum 6)</label>
           <input
             id="variables"
             type="text"
