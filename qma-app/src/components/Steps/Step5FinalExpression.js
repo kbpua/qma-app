@@ -16,6 +16,7 @@ function Step5FinalExpression({ result }) {
         </div>
         
         <div className="term-breakdown">
+          <br></br>
           <h4>Term Breakdown</h4>
           <ul>
             {result.termBreakdown.map((term, index) => (
