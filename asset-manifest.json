@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/qma-app/static/css/main.f3a8a762.css",
+    "main.css": "/qma-app/static/css/main.7943a6c2.css",
     "main.js": "/qma-app/static/js/main.bbdf5434.js",
+    "static/media/CMSC_130.jpg": "/qma-app/static/media/CMSC_130.a79290e247002489b27f.jpg",
     "index.html": "/qma-app/index.html",
-    "main.f3a8a762.css.map": "/qma-app/static/css/main.f3a8a762.css.map",
+    "main.7943a6c2.css.map": "/qma-app/static/css/main.7943a6c2.css.map",
     "main.bbdf5434.js.map": "/qma-app/static/js/main.bbdf5434.js.map"
   },
   "entrypoints": [
-    "static/css/main.f3a8a762.css",
+    "static/css/main.7943a6c2.css",
     "static/js/main.bbdf5434.js"
   ]
 }
