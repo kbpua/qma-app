@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/kbpua/CMSC-130.git/static/css/main.f3a8a762.css",
-    "main.js": "/kbpua/CMSC-130.git/static/js/main.bbdf5434.js",
-    "index.html": "/kbpua/CMSC-130.git/index.html",
-    "main.f3a8a762.css.map": "/kbpua/CMSC-130.git/static/css/main.f3a8a762.css.map",
-    "main.bbdf5434.js.map": "/kbpua/CMSC-130.git/static/js/main.bbdf5434.js.map"
+    "main.css": "/kbpua/qma-app.git/static/css/main.f3a8a762.css",
+    "main.js": "/kbpua/qma-app.git/static/js/main.bbdf5434.js",
+    "index.html": "/kbpua/qma-app.git/index.html",
+    "main.f3a8a762.css.map": "/kbpua/qma-app.git/static/css/main.f3a8a762.css.map",
+    "main.bbdf5434.js.map": "/kbpua/qma-app.git/static/js/main.bbdf5434.js.map"
   },
   "entrypoints": [
     "static/css/main.f3a8a762.css",
