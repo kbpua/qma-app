@@ -1,14 +1,15 @@
 {
   "files": {
-    "main.css": "/qma-app/static/css/main.7943a6c2.css",
-    "main.js": "/qma-app/static/js/main.bbdf5434.js",
-    "static/media/CMSC_130.jpg": "/qma-app/static/media/CMSC_130.a79290e247002489b27f.jpg",
+    "main.css": "/qma-app/static/css/main.3a976642.css",
+    "main.js": "/qma-app/static/js/main.897a8d4e.js",
+    "static/media/37467.jpg": "/qma-app/static/media/37467.867c514da28612bfd10b.jpg",
+    "static/media/MinecraftRegular-Bmg3.otf": "/qma-app/static/media/MinecraftRegular-Bmg3.82ba08919dc2add9422f.otf",
     "index.html": "/qma-app/index.html",
-    "main.7943a6c2.css.map": "/qma-app/static/css/main.7943a6c2.css.map",
-    "main.bbdf5434.js.map": "/qma-app/static/js/main.bbdf5434.js.map"
+    "main.3a976642.css.map": "/qma-app/static/css/main.3a976642.css.map",
+    "main.897a8d4e.js.map": "/qma-app/static/js/main.897a8d4e.js.map"
   },
   "entrypoints": [
-    "static/css/main.7943a6c2.css",
-    "static/js/main.bbdf5434.js"
+    "static/css/main.3a976642.css",
+    "static/js/main.897a8d4e.js"
   ]
 }
